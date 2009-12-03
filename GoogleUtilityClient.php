@@ -1,6 +1,6 @@
 <?php
 /*
- * UpcomingAPI - An up to date fully implemented api client for Upcoming.org
+ * GoogleUtilityClient
  *
  * Copyright(c) 2009 Adam Ballai <aballai@gmail.com>
  */
