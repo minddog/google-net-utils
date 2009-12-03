@@ -25,7 +25,7 @@ class GoogleDomain
             }
             
         }
-        catch(GoogleClientUtilityException $e)
+        catch(GoogleUtilityClientException $e)
         {
             throw new GoogleDomainException($e->getMessage());
         }
@@ -52,7 +52,7 @@ class GoogleDomain
                 }
             }
         }
-        catch(GoogleClientUtilityException $e)
+        catch(GoogleUtilityClientException $e)
         {
             throw new GoogleDomainException($e->getMessage());
         }
