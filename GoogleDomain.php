@@ -1,17 +1,34 @@
 <?php
+require_once 'GoogleUtilityClient.php';
+
 class GoogleDomainException extends Exception {}
 
 class GoogleDomain
 {
-    public static function get_users($api_key, $api_secret)
-    {
-
+	public static function authenticate($api_key, $api_secret)
+	{
         try
         {
-            $api = new GoogleUtilityClient($api_key,
-                                           $api_secret,
-                                           'HOSTED');
-            
+			$api = new GoogleUtilityClient($api_key,
+										   $api_secret,
+										   'HOSTED');
+
+            $api->authenticate();
+		}		
+        catch(GoogleUtilityClientException $e)
+        {
+            throw new GoogleDomainException($e->getMessage());
+        }
+	}
+	
+    public static function get_users($api_key, $api_secret)
+    {
+        try
+        {
+			$api = new GoogleUtilityClient($api_key,
+										   $api_secret,
+										   'HOSTED');
+
             $api->authenticate();
             $user_response = $api->get($api->domain . '/user/2.0');
             
@@ -38,9 +55,9 @@ class GoogleDomain
     {
         try
         {
-            $api = new GoogleUtilityClient($api_key,
-                                           $api_secret,
-                                           'HOSTED');
+			$api = new GoogleUtilityClient($api_key,
+										   $api_secret,
+										   'HOSTED');
             $api->authenticate();
             
             $groups_response = $api->get('group/2.0/' . $api->domain);
