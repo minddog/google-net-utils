@@ -80,6 +80,7 @@ class GoogleUtilityClient {
                 curl_setopt(self::$curl, CURLOPT_CUSTOMREQUEST, $method);
                 break;
             case 'POST':
+                curl_setopt(self::$curl, CURLOPT_POSTFIELDS, http_build_query($args));
                 curl_setopt(self::$curl, CURLOPT_POST, true);
                 break;
         }
