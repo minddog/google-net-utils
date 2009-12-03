@@ -29,7 +29,11 @@ class GoogleUtilityClient {
         $this->api_key = $api_key;
         $this->api_secret = $api_secret;
         $this->account_type = $account_type;
-        list($this->user, $this->domain) = explode('@', $this->api_key);
+        list($this->user, $this->domain) = @explode('@', $this->api_key);
+        if(empty($this->domain)) {
+            throw new GoogleUtilityClientException('Invalid api_key');
+        }
+        
         if(!empty($cache_config)) {
             $this->setup_memcache($cache_config['memcache_servers'],
                                   $cache_config['memcache_port'],

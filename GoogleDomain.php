@@ -5,12 +5,13 @@ class GoogleDomain
 {
     public static function get_users($api_key, $api_secret)
     {
-        $api = new GoogleUtilityClient($api_key,
-                                       $api_secret,
-                                       'HOSTED');
 
         try
         {
+            $api = new GoogleUtilityClient($api_key,
+                                           $api_secret,
+                                           'HOSTED');
+            
             $api->authenticate();
             $user_response = $api->get($api->domain . '/user/2.0');
             
@@ -35,11 +36,11 @@ class GoogleDomain
 
     public static function get_groups($api_key, $api_secret)
     {
-        $api = new GoogleUtilityClient($api_key,
-                                       $api_secret,
-                                       'HOSTED');
         try
         {
+            $api = new GoogleUtilityClient($api_key,
+                                           $api_secret,
+                                           'HOSTED');
             $api->authenticate();
             
             $groups_response = $api->get('group/2.0/' . $api->domain);
